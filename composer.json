@@ -13,5 +13,15 @@
     },
     "require-dev": {
         "phpunit/phpunit": "9.5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Supriadi\\Test\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Supriadi\\Test\\": "tests"
+        }
     }
 }
