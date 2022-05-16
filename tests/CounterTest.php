@@ -2,29 +2,29 @@
 
 namespace Supriadi\Test;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 
-class CounterTest extends TestCase {
+class CounterTest extends TestCase
+{
 
     public function testCounter()
     {
         $counter = new Counter();
-        $counter->increment();
-        $counter->increment();
-        echo $counter->getCounter().PHP_EOL;
-    }
 
-    public function testOther()
-    {
-        echo "Dari method testOther".PHP_EOL;
+        // Cara 1 (Assert::)
+        $counter->increment();
+        Assert::assertEquals(1, $counter->getCounter());
+
+        // Cara 2 ($this->)
+        $counter->increment();
+        $this->assertEquals(2, $counter->getCounter());
+
+        // Cara 3 (self::) Karena assertEquals adalah static function
+        $counter->increment();
+        self::assertEquals(3, $counter->getCounter());
     }
 }
-
-// Menjalankan semua test di class Counter
-// vendor/bin/phpunit tests/CounterTest.php
-
-// Menjalankan test per method
-//vendor/bin/phpunit --filter 'CounterTest::testOther' tests/CounterTest.php
 
 
 
