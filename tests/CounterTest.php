@@ -59,6 +59,12 @@ class CounterTest extends TestCase
         echo "Ini tidak akan dijalankan";
     }
 
+    public function testSkip()
+    {
+        self::markTestSkipped("Test function di skip/");
+        echo "Ini tidak akan dijalankan";
+    }
+
 
 }
 
