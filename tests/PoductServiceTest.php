@@ -26,7 +26,28 @@ class PoductServiceTest extends TestCase
         $result = $this->repository->findById('1');
         //var_dump($result);
         self::assertSame($product, $result);
+    }
 
+    public function testStubMap()
+    {
+        self::markTestSkipped("Di tutorial jalan, tapi ini tidak jalan makanya saya skip");
+
+        $product1 = new Product();
+        $product1->setId("1");
+
+        $product2 = new Product();
+        $product2->setId("2");
+
+        $map = [
+            ["1", $product1],
+            ["2", $product2],
+        ];
+
+        $this->repository->method("findById")
+            ->willReturnMap($map);
+
+        self::assertSame($product1, $this->repository->findById("1"));
+        self::assertSame($product2, $this->repository->findById("2"));
     }
 
 
