@@ -50,5 +50,19 @@ class PoductServiceTest extends TestCase
         self::assertSame($product2, $this->repository->findById("2"));
     }
 
+    public function testStubCallback()
+    {
+        // Di tutorial jalan, tapi ini tidak jalan
+        $this->repository->method("findById")
+            ->willReturnCallback(function (string $id) {
+                $product = new Product();
+                $product->setId($id);
+                return $product;
+            });
+
+        self::assertEquals("1", $this->repository->findById('1')->getId());
+        self::assertEquals("2", $this->repository->findById('2')->getId());
+        self::assertEquals("3", $this->repository->findById('3')->getId());
+    }
 
 }
