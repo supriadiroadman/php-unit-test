@@ -80,4 +80,18 @@ class PoductServiceTest extends TestCase
         self::assertEquals($product->getName(), $result->getName());
     }
 
+    public function testRegisterException()
+    {
+        $this->expectException(\Exception::class);
+
+        $productInDB = new Product();
+        $productInDB->setId("1");
+
+        $this->repository->method("findById")->willReturn($productInDB);
+
+        $product = new Product();
+        $product->setId("1");
+
+        $this->service->register($product);
+    }
 }
