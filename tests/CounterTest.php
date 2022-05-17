@@ -39,7 +39,7 @@ class CounterTest extends TestCase
     {
         $counter = new Counter();
         $counter->increment();
-        $this->assertEquals(1,$counter->getCounter());
+        $this->assertEquals(1, $counter->getCounter());
 
         return $counter;
     }
@@ -50,7 +50,13 @@ class CounterTest extends TestCase
     public function testSecond(Counter $counter): void
     {
         $counter->increment();
-        $this->assertEquals(2,$counter->getCounter());
+        $this->assertEquals(2, $counter->getCounter());
+    }
+
+    public function testIncomplete()
+    {
+        self::markTestIncomplete("Test function ini belum complete/selesai");
+        echo "Ini tidak akan dijalankan";
     }
 
 
